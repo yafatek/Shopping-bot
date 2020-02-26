@@ -2,14 +2,23 @@ import jwt
 from sanic import Blueprint
 from sanic.response import json
 
+from apis.users.UsersModel import usersModel
+
 users_bp = Blueprint('users_blueprint')
 
 
 @users_bp.route('/create', methods=['POST'])
 async def create(request):
+    query = usersModel.insert().values(
+        full_name='feras alawadi',
+        email='ferasawady@gmail.com',
+        phone_number='00905348854120',
+    )
+    await request.app.db.execute(query)
     return json({
         'status': True,
-        'message': 'user created Successfully!'
+        'message': 'user created Successfully!',
+
     })
 
 
@@ -42,7 +51,7 @@ async def login(request):
             if prefix in auth_header:
                 # decode the token.
                 decoded = jwt.decode(auth_header.partition(prefix)[-1].strip(), 'secret', algorithms='HS256')
-                return json({'authroized ': decoded})
+                return json({'authorized ': decoded})
     return json({
         'message': 'Forbidden, Authorization Token is required!'
     })

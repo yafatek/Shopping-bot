@@ -7,6 +7,7 @@ Create Date: 2020-02-26 16:34:27.245231
 """
 import sqlalchemy as sa
 from alembic import op
+from sqlalchemy import text
 
 # revision identifiers, used by Alembic.
 revision = '801f5172765c'
@@ -20,8 +21,12 @@ def upgrade():
         'users',
         sa.Column('id', sa.Integer, primary_key=True),
         sa.Column('full_name', sa.String(100), nullable=False),
+        sa.Column('email', sa.String(100), nullable=False),
         sa.Column('phone_number', sa.String(16), nullable=False),
-        sa.Column('description', sa.Unicode(200))
+        sa.Column('is_active', sa.Boolean, default=False),
+        sa.Column('created_at', sa.TIMESTAMP, server_default=text('NOW()')),
+        sa.Column('updated_at', sa.TIMESTAMP),
+        sa.Column('deleted_at', sa.TIMESTAMP)
     )
 
 

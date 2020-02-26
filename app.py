@@ -3,6 +3,7 @@ from sanic.response import json
 
 from apis.users.__int__ import users_group
 
+
 app = Sanic(name='shopping-bot')
 app.blueprint(users_group)
 
@@ -16,4 +17,4 @@ async def index(request):
     })
 
 
-app.run(host='127.0.0.1', port=3000, workers=4)
+app.run(host='127.0.0.1', port=3000)

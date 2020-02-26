@@ -17,13 +17,15 @@ async def create(request):
 async def auth_user(request):
     payload = {
         'some': 'payload',
-        # 'exp': datetime.utcnow(),
-        # 'nbf': datetime.utcnow() * 60,
-        # 'iss': 'YafaTek',
-        # 'aud': 'Shopping-bot clients'
+        'more': 'jwt'
     }
 
-    encoded_jwt = jwt.encode(payload, 'secret', algorithm='HS256')
+    # 'exp': datetime.utcnow(),
+    # 'nbf': datetime.utcnow() * 60,
+    # 'iss': 'YafaTek',
+    # 'aud': 'Shopping-bot clients'
+    encoded_jwt = jwt.encode(payload, 'secret', algorithm='HS256').decode("utf-8")
+
     return json({
         'status': True,
         'message': 'JWT Token Fetched Successfully!',

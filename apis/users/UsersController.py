@@ -19,7 +19,6 @@ async def auth_user(request):
         'some': 'payload',
         'more': 'jwt'
     }
-
     # 'exp': datetime.utcnow(),
     # 'nbf': datetime.utcnow() * 60,
     # 'iss': 'YafaTek',

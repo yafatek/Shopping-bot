@@ -9,5 +9,6 @@ Base.metadata.create_all(bind=engine)
 
 # Session Object
 Session = sessionmaker(bind=engine)
+
 # Global DB Object
 session = Session()
